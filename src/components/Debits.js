@@ -1,78 +1,48 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 // let linkToAPI = https://moj-api.herokuapp.com/debits
 
-class Debits extends Component{
-    constructor(){
-        super();
-        this.state = {
-            data: [],
-            debitList: [], 
-            totalAmount: 0
-        }
-    }
+class Debits extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			debitItems: props.debitItems,
+			debit: props.debit,
+			accountBalance: props.accountBalance
+		};
+	}
 
-    handleApiFetch = () =>{
-        let linkToAPI = "https://moj-api.herokuapp.com/debits";
-            //console.log(linkToAPI);
-            fetch(linkToAPI)
-            .then((response) => {
-                return response.json();
-            })
-            .then((myJson) => {
-                this.setState({data: myJson})
-            })
-            .then( () =>{
-                let totalAmount = 0;
-                this.state.data.forEach((e) =>{
-                    totalAmount += e.amount;
-                });
-                //console.log("Total amount: ", totalAmount);
-                this.setState({totalAmount: totalAmount});
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    }
+	render() {
+		let debitList = this.state.debitItems.map(x => (
+			<ul>
+				<li>description: {x.description}</li>
+				<li>amount: {x.amount}</li>
+				<li>date: {x.date}</li>
+			</ul>
+		));
+		const balance = this.state.accountBalance.toFixed(2);
+		return (
+			<div>
+				<h1>Debits Page</h1>
 
-    componentDidMount(){
-        document.title = "Debits Page"; 
-        this.handleApiFetch();
-    }
-
-    handleAddDebit = () =>{
-        
-    }
-
-    render(){
-        let debitList = this.state.data.map(x =>
-            <ul>
-                <li>description: {x.description}</li>
-                <li>amount: {x.amount}</li>
-                <li>data: {x.date}</li>
-            </ul>);
-        return(
-        <div>
-            <h1>Debits Page</h1>
-
-            {/* Adding Debits Form*/}
-            <form onSubmit={this.handleAddDebit}>
+				{/* Adding Debits Form*/}
+				{/* <form onSubmit={this.handleAddDebit}>
                 Enter name: <input type="text"/>
                 <input type="submit"/>
-            </form>
+            </form> */}
+				<div>
+					<h2>Account Balance Display Area</h2>
+					<p>Your account balance is: ${balance}</p>
+					<p>Your total debit amount is: ${this.state.debit} </p>
+				</div>
 
-            <div>
-                <h2>Debit Display Area</h2>
-                {debitList}
-            </div>
-
-            <div>
-                <h2>Account Balance Display Area</h2>
-                <p>Your total debit amount is: ${this.state.totalAmount} </p>
-            </div>
-        </div>
-        )   
-    }
+				<div>
+					<h2>Debit Display Area</h2>
+					{debitList}
+				</div>
+			</div>
+		);
+	}
 }
 
-export default Debits
+export default Debits;
