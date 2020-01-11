@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home, UserProfile, Debits, Credits } from "./components";
 import axios from "axios";
 
+// If we had more time, we would've tried implementing Header and Body components, so that we could have had the same header on every page.
+// Also, defining a Card component for rendering each Credit and Debit transaction.
+
 class App extends Component {
   constructor() {
     super();
@@ -30,7 +33,7 @@ class App extends Component {
     for (let i = 0; i < this.state.debits.length; ++i) {
       val += this.state.debits[i].amount;
     }
-    this.setState({ debit: val.toFixed(2) });
+    this.setState({ debit: val }, () => this.updateBalance());
   };
 
   calcCredit = () => {
@@ -38,17 +41,15 @@ class App extends Component {
     for (let i = 0; i < this.state.credits.length; ++i) {
       val += this.state.credits[i].amount;
     }
-    this.setState({ credit: val.toFixed(2) }, () => this.updateBalance());
+    this.setState({ credit: val }, () => this.updateBalance());
   };
 
   updateBalance = () => {
     let val = this.state.credit - this.state.debit;
-    console.log("val", val);
-    this.setState({ accountBalance: val.toFixed(2) });
+    this.setState({ accountBalance: val });
   };
 
   fetchDebits = () => {
-    console.log("fetching");
     axios
       .get("https://moj-api.herokuapp.com/debits")
       .then(response => {
@@ -58,7 +59,6 @@ class App extends Component {
   };
 
   fetchCredits = () => {
-    console.log("fetching");
     axios
       .get("https://moj-api.herokuapp.com/credits")
       .then(response => {
@@ -67,16 +67,41 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  handleAddCredit = () => {};
+  handleAddCredit = event => {
+    event.preventDefault();
+    let transaction = {};
+    transaction.description = event.target.description.value;
+    transaction.amount = parseFloat(
+      event.target.amount.value.replace(/^0+/, "")
+    );
+    let d = new Date();
+    transaction.date = d.toISOString();
+    let newCredits = [...this.state.credits];
+    newCredits.unshift(transaction);
+    // console.log("unshift", newCredits);
+    this.setState({ credits: newCredits }, () => this.calcCredit());
+  };
 
-  handleAddDebit = () => {};
+  handleAddDebit = event => {
+    event.preventDefault();
+    let transaction = {};
+    transaction.description = event.target.description.value;
+    transaction.amount = parseFloat(
+      event.target.amount.value.replace(/^0+/, "")
+    );
+    let d = new Date();
+    transaction.date = d.toISOString();
+    let newDebits = [...this.state.debits];
+    newDebits.unshift(transaction);
+    this.setState({ debits: newDebits }, () => this.calcDebit());
+  };
 
   render() {
-    console.log("_debit", this.state.debit);
-    console.log("_credit", this.state.credit);
-    console.log("_balance", this.state.accountBalance);
     const HomeComponent = () => (
-      <Home accountBalance={this.state.accountBalance} />
+      <Home
+        accountBalance={this.state.accountBalance}
+        userName={this.state.currentUser.userName}
+      />
     );
     const UserProfileComponent = () => (
       <UserProfile
@@ -101,12 +126,12 @@ class App extends Component {
 
     return (
       <Router>
-        <div>
+        <Switch>
           <Route exact path="/" render={HomeComponent} />
           <Route exact path="/userProfile" render={UserProfileComponent} />
           <Route exact path="/debits" render={DebitsComponent} />
           <Route exact path="/credits" render={CreditsComponent} />
-        </div>
+        </Switch>
       </Router>
     );
   }
