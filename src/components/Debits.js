@@ -1,18 +1,8 @@
-import React, { Component } from "react";
-import { Form, Label, Input, Button } from "reactstrap";
+
+import React from "react";
 import { Link } from "react-router-dom";
-class Debits extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			debitItems: props.debitItems,
-			debit: props.debit,
-			accountBalance: props.accountBalance,
-			newDescription: "",
-			newAmount: 0,
-			newDate: new Date().toISOString()
-		};
-	}
+import AccountBalance from "./AccountBalance";
+
 
 	handleAddDebit = e => {
 		let newDebit = {
@@ -35,78 +25,46 @@ class Debits extends Component {
 		);
 	};
 
-	handleChange = e => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
+function Debits(props) {
+  let debitList = props.debits.map(x => (
+    <ul>
+      <li>Description: {x.description}</li>
+      <li>Amount: ${x.amount}</li>
+      <li>Date: {x.date}</li>
+    </ul>
+  ));
+  return (
+    <div>
+      <h1>Debits</h1>
+      <Link to="/">Home</Link>
+      <br />
+      <Link to="/Credits">Credits</Link>
 
-	render() {
-		const debitList = this.state.debitItems.map(x => (
-			<ul>
-				<li>description: {x.description}</li>
-				<li>amount: {x.amount}</li>
-				<li>date: {x.date}</li>
-			</ul>
-		));
-		const balance = this.state.accountBalance.toFixed(2);
-		return (
-			<div>
-				<Link
-					to={{
-						pathname: "/",
-						state: {
-							accountBalance: this.state.accountBalance
-						}
-					}}
-				>
-					Home
-				</Link>
-				<h1>Debits Page</h1>
+      {/* Adding Debits Form*/}
+      <h2>Add a new debit transaction:</h2>
+      <form onSubmit={props.handleAddDebit}>
+        Enter description: <input type="text" name="description" required />
+        Enter amount:{" "}
+        <input type="number" name="amount" step="0.01" min="0.01" required />
+        <input type="submit" value="Add debit transaction" />
+      </form>
 
-				<div>
-					<h2>Account Balance Display Area</h2>
-					<p>Your account balance is: ${balance}</p>
-					<p>Your total debit amount is: ${this.state.debit} </p>
-				</div>
+      <div>
+        <h2>Total debit:</h2>
+        <p>
+          Your total debit is:
+          <span id="debit"> ${props.debit.toFixed(2)} </span>
+        </p>
+      </div>
 
-				<div>
-					<h2>Debit Display Area</h2>
-					{debitList}
-				</div>
-				{/* Adding Debits Form*/}
-				<div className="form-container">
-					<h2>Adding Debits Area</h2>
-					<Form className="add-form">
-						<Label for="newDescription">Description:</Label>
-						<Input
-							name="newDescription"
-							type="text"
-							placeholder="Describe your transaction"
-							onChange={this.handleChange}
-						/>
-						<br></br>
-						<Label for="newAmount">Amount:</Label>
-						<Input
-							name="newAmount"
-							type="number"
-							placeholder="0.00"
-							onChange={this.handleChange}
-						/>
-						<br></br>
-						<Label for="newDate">Date:</Label>
-						<Input
-							name="newDate"
-							type="text"
-							value={new Date().toISOString()}
-							readOnly
-						/>
-					</Form>
-					<Button onClick={this.handleAddDebit}>Submit</Button>
-				</div>
-			</div>
-		);
-	}
+      <AccountBalance accountBalance={props.accountBalance} />
+
+      <div>
+        <h2>Debit Transaction History</h2>
+        {debitList}
+      </div>
+    </div>
+  );
 }
 
 export default Debits;

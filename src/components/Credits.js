@@ -1,18 +1,8 @@
-import React, { Component } from "react";
-import { Form, Label, Input, Button } from "reactstrap";
+
+import React from "react";
 import { Link } from "react-router-dom";
-class Credits extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			creditItems: props.creditItems,
-			credit: props.credit,
-			accountBalance: props.accountBalance,
-			newDescription: "",
-			newAmount: 0,
-			newDate: new Date().toISOString()
-		};
-	}
+import AccountBalance from "./AccountBalance";
+
 
 	handleAddCredit = e => {
 		let newCredit = {
@@ -35,79 +25,46 @@ class Credits extends Component {
 		);
 	};
 
-	handleChange = e => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
+function Credits(props) {
+  console.log(props.credits);
+  let creditList = props.credits.map(x => (
+    <ul>
+      <li>Description: {x.description}</li>
+      <li>Amount: ${x.amount}</li>
+      <li>Date: {x.date}</li>
+    </ul>
+  ));
 
-	render() {
-		let creditList = this.state.creditItems.map(x => (
-			<ul>
-				<li>description: {x.description}</li>
-				<li>amount: {x.amount}</li>
-				<li>date: {x.date}</li>
-			</ul>
-		));
+  return (
+    <div>
+      <h1>Credits</h1>
+      <Link to="/">Home</Link>
+      <br />
+      <Link to="/Debits">Debits</Link>
 
-		const balance = this.state.accountBalance.toFixed(2);
-		return (
-			<div>
-				<Link
-					to={{
-						pathname: "/",
-						state: {
-							accountBalance: this.state.accountBalance
-						}
-					}}
-				>
-					Home
-				</Link>
-				<h1>Credits Page</h1>
+      {/* Adding Credits Form*/}
+      <h2>Add a new credit transaction:</h2>
+      <form onSubmit={props.handleAddCredit}>
+        Enter description: <input type="text" name="description" required />
+        Enter amount:{" "}
+        <input type="number" name="amount" step="0.01" min="0.01" required />
+        <input type="submit" value="Add credit transaction" />
+      </form>
 
-				<div>
-					<h2>Account Balance Display Area</h2>
-					<p>Your account balance is: ${balance}</p>
-					<p>Your total credit amount is: ${this.state.credit} </p>
-				</div>
+      <div>
+        <h2>Total credit:</h2>
+        <p>Your total credit is: ${props.credit.toFixed(2)} </p>
+      </div>
 
-				<div>
-					<h2>Credit Display Area</h2>
-					{creditList}
-				</div>
-				{/* Adding Debits Form*/}
-				<div className="form-container">
-					<h2>Adding Credits Area</h2>
-					<Form className="add-form">
-						<Label for="newDescription">Description:</Label>
-						<Input
-							name="newDescription"
-							type="text"
-							placeholder="Describe your transaction"
-							onChange={this.handleChange}
-						/>
-						<br></br>
-						<Label for="newAmount">Amount:</Label>
-						<Input
-							name="newAmount"
-							type="number"
-							placeholder="0.00"
-							onChange={this.handleChange}
-						/>
-						<br></br>
-						<Label for="newDate">Date:</Label>
-						<Input
-							name="newDate"
-							type="text"
-							value={new Date().toISOString()}
-							readOnly
-						/>
-					</Form>
-					<Button onClick={this.handleAddCredit}>Submit</Button>
-				</div>
-			</div>
-		);
-	}
+      <AccountBalance accountBalance={props.accountBalance} />
+
+      <div>
+        <h2>Credit Transaction History</h2>
+        {creditList}
+      </div>
+    </div>
+  );
+
 }
 
 export default Credits;

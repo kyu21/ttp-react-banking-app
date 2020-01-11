@@ -2,27 +2,26 @@ import React from "react";
 import AccountBalance from "./AccountBalance";
 import { Link } from "react-router-dom";
 
+// import Debits from "./Debits";
+// import Credits from "./Credits";
+
 function Home(props) {
-	const balance = props.location
-		? props.location.state.accountBalance
-		: props.accountBalance;
-
-	return (
-		<div>
-			<img
-				src="https://cdn2.iconfinder.com/data/icons/leto-blue-ui-generic-2/64/ui-20-512.png"
-				alt="bank"
-			/>
-			<h1>Bank of React</h1>
-
-			<Link to="/UserProfile">User Profile</Link>
-			<br></br>
-			<Link to="/Debits">Debits Page</Link>
-			<br></br>
-			<Link to="/Credits">Credits Page</Link>
-			<AccountBalance accountBalance={balance} />
-		</div>
-	);
+  return (
+    <div>
+      <img
+        src="https://letstalkpayments.com/wp-content/uploads/2016/04/Bank.png"
+        alt="bank image"
+      />
+      <h1>Bank of React</h1>
+      User Profile for: <Link to="/UserProfile">{props.userName}</Link>
+      <br />
+      <Link to="/Credits">Credits</Link>
+      <br />
+      <Link to="/Debits">Debits</Link>
+      <br />
+      <AccountBalance accountBalance={props.accountBalance} />
+    </div>
+  );
 }
 
 export default Home;
