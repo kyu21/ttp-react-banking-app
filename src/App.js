@@ -7,7 +7,11 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			accountBalance: 500,
+			accountBalance: 0,
+			credit: 0,
+			debit: 0,
+			creditItems: [],
+			debitItems: [],
 			currentUser: {
 				userName: "bob_loblaw",
 				memberSince: "08/23/99"
@@ -26,7 +30,7 @@ class App extends Component {
 			/>
 		);
 		const DebitsComponent = () => <Debits />;
-		const CreditsComponent = () => <Credits />
+		const CreditsComponent = () => <Credits />;
 
 		return (
 			<Router>
