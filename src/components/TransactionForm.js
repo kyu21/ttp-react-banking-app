@@ -30,7 +30,7 @@ class TransactionForm extends Component {
 	render() {
 		return (
 			<div className="form-container">
-				<h2>Adding {this.props.transactionType.} area</h2>
+				<h2>Adding {this.props.transactionType} area</h2>
 				<Form className="add-form">
 					<Label for="newDescription">Description:</Label>
 					<Input
