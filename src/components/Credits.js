@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Label, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import AccountBalance from "./AccountBalance";
 class Credits extends Component {
 	constructor(props) {
 		super(props);
@@ -50,24 +51,14 @@ class Credits extends Component {
 			</ul>
 		));
 
-		const balance = this.state.accountBalance.toFixed(2);
 		return (
 			<div>
-				<Link
-					to={{
-						pathname: "/",
-						state: {
-							accountBalance: this.state.accountBalance
-						}
-					}}
-				>
-					Home
-				</Link>
+				<Link to="/">Home Page</Link>
 				<h1>Credits Page</h1>
 
 				<div>
 					<h2>Account Balance Display Area</h2>
-					<p>Your account balance is: ${balance}</p>
+					<AccountBalance accountBalance={this.state.accountBalance} />
 					<p>Your total credit amount is: ${this.state.credit} </p>
 				</div>
 

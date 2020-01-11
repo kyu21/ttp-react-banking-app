@@ -3,10 +3,6 @@ import AccountBalance from "./AccountBalance";
 import { Link } from "react-router-dom";
 
 function Home(props) {
-	const balance = props.location
-		? props.location.state.accountBalance
-		: props.accountBalance;
-
 	return (
 		<div>
 			<img
@@ -20,7 +16,7 @@ function Home(props) {
 			<Link to="/Debits">Debits Page</Link>
 			<br></br>
 			<Link to="/Credits">Credits Page</Link>
-			<AccountBalance accountBalance={balance} />
+			<AccountBalance accountBalance={props.accountBalance} />
 		</div>
 	);
 }

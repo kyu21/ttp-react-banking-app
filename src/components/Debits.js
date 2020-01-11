@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Label, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import AccountBalance from "./AccountBalance";
 class Debits extends Component {
 	constructor(props) {
 		super(props);
@@ -49,24 +50,14 @@ class Debits extends Component {
 				<li>date: {x.date}</li>
 			</ul>
 		));
-		const balance = this.state.accountBalance.toFixed(2);
 		return (
 			<div>
-				<Link
-					to={{
-						pathname: "/",
-						state: {
-							accountBalance: this.state.accountBalance
-						}
-					}}
-				>
-					Home
-				</Link>
+				<Link to="/">Home Page</Link>
 				<h1>Debits Page</h1>
 
 				<div>
 					<h2>Account Balance Display Area</h2>
-					<p>Your account balance is: ${balance}</p>
+					<AccountBalance accountBalance={this.state.accountBalance} />
 					<p>Your total debit amount is: ${this.state.debit} </p>
 				</div>
 
