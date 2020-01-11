@@ -2,24 +2,22 @@ import React, { Component } from "react";
 import { Form, Label, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import AccountBalance from "./AccountBalance";
+import TransactionForm from "./TransactionForm";
 class Credits extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			creditItems: props.creditItems,
 			credit: props.credit,
-			accountBalance: props.accountBalance,
-			newDescription: "",
-			newAmount: 0,
-			newDate: new Date().toISOString()
+			accountBalance: props.accountBalance
 		};
 	}
 
-	handleAddCredit = e => {
+	handleAddCredit = (newDescription, newAmount, newDate) => {
 		let newCredit = {
-			description: this.state.newDescription,
-			amount: parseFloat(this.state.newAmount),
-			date: this.state.newDate
+			description: newDescription,
+			amount: parseFloat(newAmount),
+			date: newDate
 		};
 		this.setState(
 			prevState => ({
@@ -47,7 +45,7 @@ class Credits extends Component {
 			<ul>
 				<li>description: {x.description}</li>
 				<li>amount: {x.amount}</li>
-				<li>date: {x.date}</li>
+				<li>date: {new Date(x.date).toLocaleString()}</li>
 			</ul>
 		));
 
@@ -67,35 +65,10 @@ class Credits extends Component {
 					{creditList}
 				</div>
 				{/* Adding Debits Form*/}
-				<div className="form-container">
-					<h2>Adding Credits Area</h2>
-					<Form className="add-form">
-						<Label for="newDescription">Description:</Label>
-						<Input
-							name="newDescription"
-							type="text"
-							placeholder="Describe your transaction"
-							onChange={this.handleChange}
-						/>
-						<br></br>
-						<Label for="newAmount">Amount:</Label>
-						<Input
-							name="newAmount"
-							type="number"
-							placeholder="0.00"
-							onChange={this.handleChange}
-						/>
-						<br></br>
-						<Label for="newDate">Date:</Label>
-						<Input
-							name="newDate"
-							type="text"
-							value={new Date().toISOString()}
-							readOnly
-						/>
-					</Form>
-					<Button onClick={this.handleAddCredit}>Submit</Button>
-				</div>
+				<TransactionForm
+					transactionType="credit"
+					handleAddCredit={this.handleAddCredit}
+				/>
 			</div>
 		);
 	}
