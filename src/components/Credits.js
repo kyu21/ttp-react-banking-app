@@ -9,7 +9,10 @@ class Credits extends Component {
 		this.state = {
 			creditItems: props.creditItems,
 			credit: props.credit,
-			accountBalance: props.accountBalance
+			accountBalance: props.accountBalance,
+			newDescription: "",
+			newAmount: 0,
+			newDate: new Date().toISOString()
 		};
 	}
 

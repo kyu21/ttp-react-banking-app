@@ -7,7 +7,7 @@ class TransactionForm extends Component {
 		this.state = {
 			newDescription: "",
 			newAmount: 0,
-			newDate: ""
+			newDate: new Date()
 		};
 	}
 
@@ -52,7 +52,7 @@ class TransactionForm extends Component {
 					<Input
 						name="newDate"
 						type="text"
-						value={new Date().toISOString()}
+						value={new Date().toLocaleString()}
 						readOnly
 					/>
 				</Form>
