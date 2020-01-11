@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home, UserProfile, Debits, Credits } from "./components";
+import axios from "axios";
 
 class App extends Component {
 	constructor() {
@@ -18,6 +19,8 @@ class App extends Component {
 			}
 		};
 	}
+
+	componentDidMount = () => {};
 
 	render() {
 		const HomeComponent = () => (
