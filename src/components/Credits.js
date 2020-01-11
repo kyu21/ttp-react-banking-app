@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 
 // let linkToAPI = https://moj-api.herokuapp.com/debits
 
-class Debits extends Component{
+class Credits extends Component{
     constructor(){
         super();
         this.state = {
             data: [],
-            debitList: [], 
+            creditList: [], 
             totalAmount: 0
         }
     }
 
     handleApiFetch = () =>{
-        let linkToAPI = "https://moj-api.herokuapp.com/debits";
+        let linkToAPI = "https://moj-api.herokuapp.com/credits";
             //console.log(linkToAPI);
             fetch(linkToAPI)
             .then((response) => {
@@ -36,16 +36,16 @@ class Debits extends Component{
     }
 
     componentDidMount(){
-        document.title = "Debits Page"; 
+        document.title = "Crebits Page"; 
         this.handleApiFetch();
     }
 
-    handleAddDebit = () =>{
+    handleAddCredit = () =>{
         
     }
 
     render(){
-        let debitList = this.state.data.map(x =>
+        let creditList = this.state.data.map(x =>
             <ul>
                 <li>description: {x.description}</li>
                 <li>amount: {x.amount}</li>
@@ -53,26 +53,26 @@ class Debits extends Component{
             </ul>);
         return(
         <div>
-            <h1>Debits Page</h1>
+            <h1>Credits Page</h1>
 
             {/* Adding Debits Form*/}
-            <form onSubmit={this.handleAddDebit}>
+            <form onSubmit={this.handleAddCredit}>
                 Enter name: <input type="text"/>
                 <input type="submit"/>
             </form>
 
             <div>
-                <h2>Debit Display Area</h2>
-                {debitList}
+                <h2>Credit Display Area</h2>
+                {creditList}
             </div>
 
             <div>
                 <h2>Account Balance Display Area</h2>
-                <p>Your total debit amount is: ${this.state.totalAmount} </p>
+                <p>Your total credit amount is: ${this.state.totalAmount} </p>
             </div>
         </div>
         )   
     }
 }
 
-export default Debits
+export default Credits
