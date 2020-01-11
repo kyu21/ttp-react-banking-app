@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ttp-react-banking-app/static/css/main.22156b0c.chunk.css",
+    "main.js": "/ttp-react-banking-app/static/js/main.1e694dc1.chunk.js",
+    "main.js.map": "/ttp-react-banking-app/static/js/main.1e694dc1.chunk.js.map",
+    "runtime-main.js": "/ttp-react-banking-app/static/js/runtime-main.b17c4a62.js",
+    "runtime-main.js.map": "/ttp-react-banking-app/static/js/runtime-main.b17c4a62.js.map",
+    "static/js/2.8c023e59.chunk.js": "/ttp-react-banking-app/static/js/2.8c023e59.chunk.js",
+    "static/js/2.8c023e59.chunk.js.map": "/ttp-react-banking-app/static/js/2.8c023e59.chunk.js.map",
+    "index.html": "/ttp-react-banking-app/index.html",
+    "precache-manifest.601e2cf02aa6df14d8309e30264b7e55.js": "/ttp-react-banking-app/precache-manifest.601e2cf02aa6df14d8309e30264b7e55.js",
+    "service-worker.js": "/ttp-react-banking-app/service-worker.js",
+    "static/css/main.22156b0c.chunk.css.map": "/ttp-react-banking-app/static/css/main.22156b0c.chunk.css.map",
+    "static/js/2.8c023e59.chunk.js.LICENSE": "/ttp-react-banking-app/static/js/2.8c023e59.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b17c4a62.js",
+    "static/js/2.8c023e59.chunk.js",
+    "static/css/main.22156b0c.chunk.css",
+    "static/js/main.1e694dc1.chunk.js"
+  ]
+}
