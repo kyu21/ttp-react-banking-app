@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./components/Home";
-import UserProfile from "./components/UserProfile";
-import Debits from "./components/Debits";
+import { Home, UserProfile, Debits } from "./components";
 
 class App extends Component {
 	constructor() {
