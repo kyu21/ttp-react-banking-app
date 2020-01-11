@@ -114,6 +114,7 @@ class App extends Component {
         debits={this.state.debits}
         debit={this.state.debit}
         handleAddDebit={this.handleAddDebit}
+        accountBalance={this.state.accountBalance}
       />
     );
     const CreditsComponent = () => (
@@ -121,6 +122,7 @@ class App extends Component {
         credits={this.state.credits}
         credit={this.state.credit}
         handleAddCredit={this.handleAddCredit}
+        accountBalance={this.state.accountBalance}
       />
     );
 

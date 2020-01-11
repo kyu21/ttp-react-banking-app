@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AccountBalance from "./AccountBalance";
 
 // let linkToAPI = https://moj-api.herokuapp.com/debits
 
@@ -30,10 +31,12 @@ function Debits(props) {
       <div>
         <h2>Total debit:</h2>
         <p>
-          Your total debit amount is:
-          <span id="debit">${props.debit.toFixed(2)} </span>
+          Your total debit is:
+          <span id="debit"> ${props.debit.toFixed(2)} </span>
         </p>
       </div>
+
+      <AccountBalance accountBalance={props.accountBalance} />
 
       <div>
         <h2>Debit Transaction History</h2>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AccountBalance from "./AccountBalance";
 
 // let linkToAPI = https://moj-api.herokuapp.com/debits
 
@@ -31,8 +32,10 @@ function Credits(props) {
 
       <div>
         <h2>Total credit:</h2>
-        <p>Your total credit amount is: ${props.credit.toFixed(2)} </p>
+        <p>Your total credit is: ${props.credit.toFixed(2)} </p>
       </div>
+
+      <AccountBalance accountBalance={props.accountBalance} />
 
       <div>
         <h2>Credit Transaction History</h2>
