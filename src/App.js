@@ -110,7 +110,7 @@ class App extends Component {
 		);
 
 		return (
-			<Router>
+			<Router basename="/ttp-react-banking-app">
 				<div>
 					<Route exact path="/" render={HomeComponent} />
 					<Route exact path="/userProfile" render={UserProfileComponent} />
