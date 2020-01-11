@@ -1,17 +1,19 @@
-.add-debit-container {
-  width: 20%;
-  margin: 10px
+.form-container {
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	margin: 10px;
 }
 
-.add-debit-form {
-  display: flex;
-  flex-direction: column;
+.add-form {
+	display: flex;
+	flex-direction: column;
 }
 
 input {
-  text-align: center;
+	text-align: center;
 }
 
 button {
-  margin: 10px
+	margin: 20px;
 }

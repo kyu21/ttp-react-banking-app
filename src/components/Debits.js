@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Form, Label, Input, Button } from "reactstrap";
-// let linkToAPI = https://moj-api.herokuapp.com/debits
-
 class Debits extends Component {
 	constructor(props) {
 		super(props);
@@ -61,9 +59,9 @@ class Debits extends Component {
 					{debitList}
 				</div>
 				{/* Adding Debits Form*/}
-				<div className="add-debit-container">
+				<div className="form-container">
 					<h2>Adding Debits Area</h2>
-					<Form className="add-debit-form">
+					<Form className="add-form">
 						<Label for="newDescription">Description:</Label>
 						<Input
 							name="newDescription"
