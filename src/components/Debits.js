@@ -1,8 +1,29 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import AccountBalance from "./AccountBalance";
 
-// let linkToAPI = https://moj-api.herokuapp.com/debits
+
+	handleAddDebit = e => {
+		let newDebit = {
+			description: this.state.newDescription,
+			amount: parseFloat(this.state.newAmount),
+			date: this.state.newDate
+		};
+		this.setState(
+			prevState => ({
+				debitItems: [...prevState.debitItems, newDebit],
+				debit: prevState.debit + newDebit.amount,
+				accountBalance: prevState.accountBalance - newDebit.amount
+			}),
+			() =>
+				this.props.handleAddDebit(
+					this.state.debitItems,
+					this.state.debit,
+					this.state.accountBalance
+				)
+		);
+	};
 
 function Debits(props) {
   let debitList = props.debits.map(x => (

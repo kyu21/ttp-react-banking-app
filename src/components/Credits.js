@@ -1,8 +1,29 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import AccountBalance from "./AccountBalance";
 
-// let linkToAPI = https://moj-api.herokuapp.com/debits
+
+	handleAddCredit = e => {
+		let newCredit = {
+			description: this.state.newDescription,
+			amount: parseFloat(this.state.newAmount),
+			date: this.state.newDate
+		};
+		this.setState(
+			prevState => ({
+				creditItems: [...prevState.creditItems, newCredit],
+				credit: prevState.credit + newCredit.amount,
+				accountBalance: prevState.accountBalance + newCredit.amount
+			}),
+			() =>
+				this.props.handleAddCredit(
+					this.state.creditItems,
+					this.state.credit,
+					this.state.accountBalance
+				)
+		);
+	};
 
 function Credits(props) {
   console.log(props.credits);
@@ -43,6 +64,7 @@ function Credits(props) {
       </div>
     </div>
   );
+
 }
 
 export default Credits;

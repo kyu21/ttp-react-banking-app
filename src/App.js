@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Home, UserProfile, Debits, Credits } from "./components";
 import axios from "axios";
 
 // If we had more time, we would've tried implementing Header and Body components, so that we could have had the same header on every page.
 // Also, defining a Card component for rendering each Credit and Debit transaction.
 
+
+const API_URL_DEBIT = "https://moj-api.herokuapp.com/debits";
+const API_URL_CREDIT = "https://moj-api.herokuapp.com/credits";
 class App extends Component {
+
   constructor() {
     super();
     this.state = {
@@ -137,5 +141,6 @@ class App extends Component {
       </Router>
     );
   }
+
 }
 export default App;
