@@ -61,16 +61,28 @@ class App extends Component {
 	};
 
 	render() {
-		const HomeComponent = () => (
-			<Home accountBalance={this.state.accountBalance} />
-		);
+		const {
+			accountBalance,
+			debit,
+			credit,
+			debitItems,
+			creditItems
+		} = this.state;
+
+		const HomeComponent = () => <Home accountBalance={accountBalance} />;
 		const UserProfileComponent = () => (
 			<UserProfile
 				userName={this.state.currentUser.userName}
 				memberSince={this.state.currentUser.memberSince}
 			/>
 		);
-		const DebitsComponent = () => <Debits />;
+		const DebitsComponent = () => (
+			<Debits
+				debit={debit}
+				debitItems={debitItems}
+				accountBalance={accountBalance}
+			/>
+		);
 		const CreditsComponent = () => <Credits />;
 
 		return (
