@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Label, Input, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 class Credits extends Component {
 	constructor(props) {
 		super(props);
@@ -25,7 +26,12 @@ class Credits extends Component {
 				credit: prevState.credit + newCredit.amount,
 				accountBalance: prevState.accountBalance + newCredit.amount
 			}),
-			() => console.log(this.state.debitItems)
+			() =>
+				this.props.handleAddCredit(
+					this.state.creditItems,
+					this.state.credit,
+					this.state.accountBalance
+				)
 		);
 	};
 
@@ -47,6 +53,16 @@ class Credits extends Component {
 		const balance = this.state.accountBalance.toFixed(2);
 		return (
 			<div>
+				<Link
+					to={{
+						pathname: "/",
+						state: {
+							accountBalance: this.state.accountBalance
+						}
+					}}
+				>
+					Home
+				</Link>
 				<h1>Credits Page</h1>
 
 				<div>

@@ -68,6 +68,14 @@ class App extends Component {
 		});
 	};
 
+	handleAddCredit = (creditItems, credit, accountBalance) => {
+		this.setState({
+			creditItems: creditItems,
+			credit: credit,
+			accountBalance: accountBalance
+		});
+	};
+
 	render() {
 		const {
 			accountBalance,
@@ -97,6 +105,7 @@ class App extends Component {
 				credit={credit}
 				creditItems={creditItems}
 				accountBalance={accountBalance}
+				handleAddCredit={this.handleAddCredit}
 			/>
 		);
 
