@@ -83,7 +83,13 @@ class App extends Component {
 				accountBalance={accountBalance}
 			/>
 		);
-		const CreditsComponent = () => <Credits />;
+		const CreditsComponent = () => (
+			<Credits
+				credit={credit}
+				creditItems={creditItems}
+				accountBalance={accountBalance}
+			/>
+		);
 
 		return (
 			<Router>
