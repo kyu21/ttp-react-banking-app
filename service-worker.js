@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ttp-react-banking-app/precache-manifest.601e2cf02aa6df14d8309e30264b7e55.js"
+  "/ttp-react-banking-app/precache-manifest.9a5238ccc25cf48266bc330b3691d212.js"
 );
 
 self.addEventListener('message', (event) => {
