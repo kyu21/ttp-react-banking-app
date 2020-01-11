@@ -1,25 +1,22 @@
 import React, { Component } from "react";
-import { Form, Label, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import AccountBalance from "./AccountBalance";
+import TransactionForm from "./TransactionForm";
 class Debits extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			debitItems: props.debitItems,
 			debit: props.debit,
-			accountBalance: props.accountBalance,
-			newDescription: "",
-			newAmount: 0,
-			newDate: new Date().toISOString()
+			accountBalance: props.accountBalance
 		};
 	}
 
-	handleAddDebit = e => {
+	handleAddDebit = (newDescription, newAmount, newDate) => {
 		let newDebit = {
-			description: this.state.newDescription,
-			amount: parseFloat(this.state.newAmount),
-			date: this.state.newDate
+			description: newDescription,
+			amount: parseFloat(newAmount),
+			date: newDate
 		};
 		this.setState(
 			prevState => ({
@@ -44,10 +41,10 @@ class Debits extends Component {
 
 	render() {
 		const debitList = this.state.debitItems.map(x => (
-			<ul>
+			<ul key={x.description}>
 				<li>description: {x.description}</li>
 				<li>amount: {x.amount}</li>
-				<li>date: {x.date}</li>
+				<li>date: {new Date(x.date).toLocaleString()}</li>
 			</ul>
 		));
 		return (
@@ -66,35 +63,10 @@ class Debits extends Component {
 					{debitList}
 				</div>
 				{/* Adding Debits Form*/}
-				<div className="form-container">
-					<h2>Adding Debits Area</h2>
-					<Form className="add-form">
-						<Label for="newDescription">Description:</Label>
-						<Input
-							name="newDescription"
-							type="text"
-							placeholder="Describe your transaction"
-							onChange={this.handleChange}
-						/>
-						<br></br>
-						<Label for="newAmount">Amount:</Label>
-						<Input
-							name="newAmount"
-							type="number"
-							placeholder="0.00"
-							onChange={this.handleChange}
-						/>
-						<br></br>
-						<Label for="newDate">Date:</Label>
-						<Input
-							name="newDate"
-							type="text"
-							value={new Date().toISOString()}
-							readOnly
-						/>
-					</Form>
-					<Button onClick={this.handleAddDebit}>Submit</Button>
-				</div>
+				<TransactionForm
+					transactionType="debit"
+					handleAddDebit={this.handleAddDebit}
+				/>
 			</div>
 		);
 	}
