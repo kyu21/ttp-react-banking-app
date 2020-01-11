@@ -7,7 +7,8 @@ class Debits extends Component{
         super();
         this.state = {
             data: [],
-            debitList: []
+            debitList: [], 
+            totalAmount: 0
         }
     }
 
@@ -19,8 +20,15 @@ class Debits extends Component{
                 return response.json();
             })
             .then((myJson) => {
-                // console.log(myJson[0].description);
                 this.setState({data: myJson})
+            })
+            .then( () =>{
+                let totalAmount = 0;
+                this.state.data.forEach((e) =>{
+                    totalAmount += e.amount;
+                });
+                //console.log("Total amount: ", totalAmount);
+                this.setState({totalAmount: totalAmount});
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -45,6 +53,10 @@ class Debits extends Component{
             <div>
                 <h2>Debit Display Area</h2>
                 {debitList}
+            </div>
+            <div>
+                <h2>Account Balance Display Area</h2>
+                <p>Your total debit amount is: ${this.state.totalAmount} </p>
             </div>
         </div>
         )   
