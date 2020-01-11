@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form, Label, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import AccountBalance from "./AccountBalance";
 import TransactionForm from "./TransactionForm";
@@ -9,10 +8,7 @@ class Credits extends Component {
 		this.state = {
 			creditItems: props.creditItems,
 			credit: props.credit,
-			accountBalance: props.accountBalance,
-			newDescription: "",
-			newAmount: 0,
-			newDate: new Date().toISOString()
+			accountBalance: props.accountBalance
 		};
 	}
 
