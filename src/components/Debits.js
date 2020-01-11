@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Label, Input, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 class Debits extends Component {
 	constructor(props) {
 		super(props);
@@ -25,7 +26,12 @@ class Debits extends Component {
 				debit: prevState.debit + newDebit.amount,
 				accountBalance: prevState.accountBalance - newDebit.amount
 			}),
-			() => console.log(this.state.debitItems)
+			() =>
+				this.props.handleAddDebit(
+					this.state.debitItems,
+					this.state.debit,
+					this.state.accountBalance
+				)
 		);
 	};
 
@@ -46,6 +52,16 @@ class Debits extends Component {
 		const balance = this.state.accountBalance.toFixed(2);
 		return (
 			<div>
+				<Link
+					to={{
+						pathname: "/",
+						state: {
+							accountBalance: this.state.accountBalance
+						}
+					}}
+				>
+					Home
+				</Link>
 				<h1>Debits Page</h1>
 
 				<div>

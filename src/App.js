@@ -60,6 +60,22 @@ class App extends Component {
 		return Promise.resolve("success");
 	};
 
+	handleAddDebit = (debitItems, debit, accountBalance) => {
+		this.setState({
+			debitItems: debitItems,
+			debit: debit,
+			accountBalance: accountBalance
+		});
+	};
+
+	handleAddCredit = (creditItems, credit, accountBalance) => {
+		this.setState({
+			creditItems: creditItems,
+			credit: credit,
+			accountBalance: accountBalance
+		});
+	};
+
 	render() {
 		const {
 			accountBalance,
@@ -81,6 +97,7 @@ class App extends Component {
 				debit={debit}
 				debitItems={debitItems}
 				accountBalance={accountBalance}
+				handleAddDebit={this.handleAddDebit}
 			/>
 		);
 		const CreditsComponent = () => (
@@ -88,6 +105,7 @@ class App extends Component {
 				credit={credit}
 				creditItems={creditItems}
 				accountBalance={accountBalance}
+				handleAddCredit={this.handleAddCredit}
 			/>
 		);
 
