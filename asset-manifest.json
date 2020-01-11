@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/ttp-react-banking-app/static/css/main.22156b0c.chunk.css",
-    "main.js": "/ttp-react-banking-app/static/js/main.b814c9bb.chunk.js",
-    "main.js.map": "/ttp-react-banking-app/static/js/main.b814c9bb.chunk.js.map",
+    "main.css": "/ttp-react-banking-app/static/css/main.43adf313.chunk.css",
+    "main.js": "/ttp-react-banking-app/static/js/main.3c20a325.chunk.js",
+    "main.js.map": "/ttp-react-banking-app/static/js/main.3c20a325.chunk.js.map",
     "runtime-main.js": "/ttp-react-banking-app/static/js/runtime-main.b17c4a62.js",
     "runtime-main.js.map": "/ttp-react-banking-app/static/js/runtime-main.b17c4a62.js.map",
     "static/js/2.8c023e59.chunk.js": "/ttp-react-banking-app/static/js/2.8c023e59.chunk.js",
     "static/js/2.8c023e59.chunk.js.map": "/ttp-react-banking-app/static/js/2.8c023e59.chunk.js.map",
     "index.html": "/ttp-react-banking-app/index.html",
-    "precache-manifest.e873e43f598552a348fa60349559f011.js": "/ttp-react-banking-app/precache-manifest.e873e43f598552a348fa60349559f011.js",
+    "precache-manifest.84f2b5c43db2da04e25ccc37f31b15e6.js": "/ttp-react-banking-app/precache-manifest.84f2b5c43db2da04e25ccc37f31b15e6.js",
     "service-worker.js": "/ttp-react-banking-app/service-worker.js",
-    "static/css/main.22156b0c.chunk.css.map": "/ttp-react-banking-app/static/css/main.22156b0c.chunk.css.map",
+    "static/css/main.43adf313.chunk.css.map": "/ttp-react-banking-app/static/css/main.43adf313.chunk.css.map",
     "static/js/2.8c023e59.chunk.js.LICENSE": "/ttp-react-banking-app/static/js/2.8c023e59.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.b17c4a62.js",
     "static/js/2.8c023e59.chunk.js",
-    "static/css/main.22156b0c.chunk.css",
-    "static/js/main.b814c9bb.chunk.js"
+    "static/css/main.43adf313.chunk.css",
+    "static/js/main.3c20a325.chunk.js"
   ]
 }
